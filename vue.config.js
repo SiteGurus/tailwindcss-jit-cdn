@@ -34,7 +34,7 @@ const files = [
     pattern: /preflight/,
     file: path.resolve(
       __dirname,
-      "node_modules/tailwindcss/lib/plugins/css/preflight.css"
+      "node_modules/tailwindcss/lib/css/preflight.css"
     ),
   },
 ];
@@ -84,14 +84,14 @@ module.exports = {
     })
 
     config.module.rules.push({
-      test: require.resolve("tailwindcss/lib/jit/processTailwindFeatures.js"),
+      test: require.resolve("tailwindcss/lib/processTailwindFeatures.js"),
       use: createLoader(function(source) {
         return source.replace(`let warned = false;`, `let warned = true;`);
       }),
     });
 
     config.module.rules.push({
-      test: require.resolve("tailwindcss/lib/plugins/preflight.js"),
+      test: require.resolve("tailwindcss/lib/corePlugins.js"),
       use: createLoader(function(source) {
         return source.replace(
           /_fs\.default\.readFileSync\(.*?'utf8'\)/g,
