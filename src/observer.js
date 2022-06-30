@@ -61,22 +61,6 @@ export default (force = false) => {
       style.id = tailwindId;
       style.classList = 'tailwindCompiledCss';
       document.head.append(style);
-
-      // Upload css to siteglide site
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-      console.log(result);
-      var urlencoded = new URLSearchParams();
-      urlencoded.append("css", result.css);
-      urlencoded.append("page_slug", location.pathname.replace('/',''));
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-      };
-      fetch("/modules/module_86/api/tailwind/cache-page", requestOptions).catch(error => console.log('error', error))
     }
 
     style.textContent = result.css;
